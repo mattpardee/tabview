@@ -11,6 +11,5 @@
   ],
   "styles": [
     "tabview.css"
-  ],
-  "repo": "https://raw.github.com/creationix/tabview"
+  ]
 }
