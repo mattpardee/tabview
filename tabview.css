@@ -47,6 +47,7 @@
 div.left-swoop, div.right-swoop {
   position: absolute;
   height: 25px;
+  /** Depending on your swoop image, set the width here **/
   top: 0;
 }
 
@@ -56,12 +57,4 @@ div.left-swoop {
 
 div.right-swoop {
   right: 0;
-}
-
-.tabview > div.selected div.left-swoop {
-  background-position: 0 0;
-}
-
-.tabview > div.selected div.right-swoop {
-  background-position: 0 -52px;
 }
