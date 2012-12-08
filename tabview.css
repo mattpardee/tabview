@@ -24,7 +24,6 @@
 }
 .tabview > div > *:first-child {
   overflow: hidden;
-  margin-right: 8px;
   text-overflow: ellipsis;
   padding-right: 20px;
 }
