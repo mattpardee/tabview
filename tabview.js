@@ -9,7 +9,6 @@ function TabView(el) {
   this.height = null;
   // tabExtraWidths = closeButton.scrollWidth + padding + margin (left & right)
   this.tabExtraWidths = 10;
-  this.customTabExtraWidths = 0;
 }
 
 function isNumber(value) {
@@ -38,7 +37,7 @@ TabView.prototype.resize = function (width, height) {
 
   var i, l = this.tabs.length;
 
-  var space = (width + 14) - l * (this.tabExtraWidths + this.customTabExtraWidths);
+  var space = (width + 14) - l * this.tabExtraWidths;
   var lineHeight = (height - 3) + "px";
   for (i = 0; i < l; i++) {
     var maxWidth = Math.round(space / (l - i));
@@ -130,7 +129,7 @@ TabView.prototype.getExtraWidths = function() {
 };
 
 TabView.prototype.addCustomExtraWidths = function(width) {
-  this.customTabExtraWidths += width;
+  this.tabExtraWidths += width;
 };
 
 TabView.prototype.remove = function (tab) {
