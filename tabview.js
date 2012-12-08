@@ -1,6 +1,6 @@
 exports.TabView = TabView;
 
-function TabView(el) {
+function TabView(el, extraTabWidth) {
   el = this.el = el || document.createElement("div");
   el.classList.add("tabview");
   this.tabs = [];
@@ -8,7 +8,7 @@ function TabView(el) {
   this.width = null;
   this.height = null;
   // tabExtraWidths = closeButton.scrollWidth + padding + margin (left & right)
-  this.tabExtraWidths = 10;
+  this.tabExtraWidths = arguments.length > 1 ? extraTabWidth : 10;
 }
 
 function isNumber(value) {
@@ -122,14 +122,6 @@ TabView.prototype.getSelectedIndex = function() {
       return i;
   }
   return -1;
-};
-
-TabView.prototype.getExtraWidths = function() {
-  return this.tabExtraWidths;
-};
-
-TabView.prototype.addCustomExtraWidths = function(width) {
-  this.tabExtraWidths += width;
 };
 
 TabView.prototype.remove = function (tab) {
