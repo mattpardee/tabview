@@ -10,7 +10,7 @@
 }
 .tabview > * {
   display: inline-block;
-  width: 150px;
+  max-width: 150px;
   position: relative;
   overflow: hidden;
   cursor: default;
@@ -18,7 +18,7 @@
   margin: 3px 0 0 -18px;
 }
 .tabview > *:first-child {
-  margin-left: 0px;
+  margin-left: -4px;
 }
 .tabview > div > * {
   display: inline-block;
@@ -27,9 +27,9 @@
 .tabview > div > *:first-child {
   overflow: hidden;
   margin-right: 8px;
-  width: 104px;
+  max-width: 104px;
   text-overflow: ellipsis;
-  padding-right: 14px;
+  padding-right: 20px;
 }
 
 .tabview > div > a {

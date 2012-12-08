@@ -1,5 +1,7 @@
 exports.TabView = TabView;
 
+var tabExtraWidths = 0;
+
 function TabView(el) {
     el = this.el = el || document.createElement("div");
     el.classList.add("tabview");
@@ -34,12 +36,13 @@ TabView.prototype.resize = function (width, height) {
   this.el.style.height = height + "px";
 
   var i, l = this.tabs.length;
-  var space = width - l * 24;
+
+  var space = (width + 14) - l * tabExtraWidths;
   var lineHeight = (height - 3) + "px";
   for (i = 0; i < l; i++) {
-    var maxWidth = Math.floor(space / (l - i));
+    var maxWidth = Math.round(space / (l - i));
     space -= maxWidth;
-    this.tabs[i].label.el.style.maxWidth = maxWidth + "px";
+    this.tabs[i].label.el.style.width = Math.min(maxWidth, 104) + "px";
     this.tabs[i].el.style.lineHeight = lineHeight;
     this.tabs[i].el.style.height = lineHeight;
   }
@@ -79,6 +82,18 @@ TabView.prototype.add = function (label) {
   closeButton.appendChild(closeIcon);
   closeIcon.className = "icon-remove";
   tab.el.appendChild(closeButton);
+
+  // Calculate extra widths
+  tabExtraWidths = 0;
+  var tabComputedStyle = window.getComputedStyle(tab.el, null);
+  tabExtraWidths += leftSwoop.scrollWidth;
+  tabExtraWidths += rightSwoop.scrollWidth;
+  tabExtraWidths += closeButton.scrollWidth;
+  tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-left'), 10);
+  tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-right'), 10);
+  tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('margin-left'), 10);
+  tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('margin-right'), 10);
+
   tab.el.addEventListener("click", function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
