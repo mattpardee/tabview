@@ -6,6 +6,7 @@
 }
 .tabview > div.selected {
   color: #000;
+  background-color: #aaa;
   z-index: 2;
 }
 .tabview > * {

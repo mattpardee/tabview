@@ -8,7 +8,7 @@ function TabView(el) {
   this.width = null;
   this.height = null;
   this.tabExtraWidths = 0;
-  this.customTabWidths = 0;
+  this.customTabExtraWidths = 0;
 }
 
 function isNumber(value) {
@@ -37,7 +37,7 @@ TabView.prototype.resize = function (width, height) {
 
   var i, l = this.tabs.length;
 
-  var space = (width + 14) - l * (this.tabExtraWidths + this.customTabWidths);
+  var space = (width + 14) - l * (this.tabExtraWidths + this.customTabExtraWidths);
   var lineHeight = (height - 3) + "px";
   for (i = 0; i < l; i++) {
     var maxWidth = Math.round(space / (l - i));
@@ -80,8 +80,6 @@ TabView.prototype.add = function (label) {
   // Calculate extra widths
   this.tabExtraWidths = 0;
   var tabComputedStyle = window.getComputedStyle(tab.el, null);
-  //tabExtraWidths += leftSwoop.scrollWidth;
-  //tabExtraWidths += rightSwoop.scrollWidth;
   this.tabExtraWidths += closeButton.scrollWidth;
   this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-left'), 10);
   this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-right'), 10);
@@ -140,7 +138,7 @@ TabView.prototype.getExtraWidths = function() {
 };
 
 TabView.prototype.addCustomExtraWidths = function(width) {
-  this.customTabWidths += width;
+  this.customTabExtraWidths += width;
 };
 
 TabView.prototype.remove = function (tab) {
