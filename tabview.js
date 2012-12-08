@@ -7,7 +7,8 @@ function TabView(el) {
   this.selected = null;
   this.width = null;
   this.height = null;
-  this.tabExtraWidths = 0;
+  // tabExtraWidths = closeButton.scrollWidth + padding + margin (left & right)
+  this.tabExtraWidths = 10;
   this.customTabExtraWidths = 0;
 }
 
@@ -76,15 +77,6 @@ TabView.prototype.add = function (label) {
   closeButton.appendChild(closeIcon);
   closeIcon.className = "icon-remove";
   tab.el.appendChild(closeButton);
-
-  // Calculate extra widths
-  this.tabExtraWidths = 0;
-  var tabComputedStyle = window.getComputedStyle(tab.el, null);
-  this.tabExtraWidths += closeButton.scrollWidth;
-  this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-left'), 10);
-  this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('padding-right'), 10);
-  this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('margin-left'), 10);
-  this.tabExtraWidths += parseInt(tabComputedStyle.getPropertyValue('margin-right'), 10);
 
   tab.el.addEventListener("click", function (evt) {
     evt.preventDefault();
