@@ -117,11 +117,7 @@ TabView.prototype.select = function (tab) {
 TabView.prototype.getSelectedIndex = function() {
   if (!this.selected)
     return -1;
-  for (var i = 0, len = this.tabs.length; i < len; i++) {
-    if (this.tabs[i].el.classList.contains("selected") === true)
-      return i;
-  }
-  return -1;
+  this.tabs.indexOf(this.selected);
 };
 
 TabView.prototype.remove = function (tab) {
